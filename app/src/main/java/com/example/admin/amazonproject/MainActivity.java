@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.admin.amazonproject.model.Book;
 
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                                     for (Book book : books) {
                                         e.onNext(book);
                                     }
+                                    Toast.makeText(MainActivity.this, "DataBase Updated", Toast.LENGTH_SHORT).show();
                                 }
                                 e.onComplete();
                             }
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         if(sp.getLong("ExactTime", 0) >= (sp.getLong("ExactTime", 0) + waitTime )){
                             editor.putLong("ExactTime", System.currentTimeMillis());
                             editor.commit();
+                            Toast.makeText(MainActivity.this, "UpdateTimer", Toast.LENGTH_SHORT).show();
                         }
 
                         recyclerViewAdapter = new RecyclerViewAdapter(databaseHelper.getBooksList());
